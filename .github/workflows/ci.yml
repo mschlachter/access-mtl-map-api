@@ -66,7 +66,7 @@ jobs:
 
       - name: Upload release artifact with ghr
         uses: fnkr/github-action-ghr@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: ./access-mtl-map-api-${{ github.ref_name }}.tar.gz
-          replace: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHR_PATH: ./access-mtl-map-api-${{ github.ref_name }}.tar.gz
+          GHR_REPLACE: true
