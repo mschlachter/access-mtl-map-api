@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ "main" ]
@@ -61,10 +64,9 @@ jobs:
           cp target/release/access-mtl-map-api build/
           tar -C build -czf access-mtl-map-api-${{ github.ref_name }}.tar.gz access-mtl-map-api
 
-      - name: Upload release artifact
-        uses: actions/upload-release-asset@v1
+      - name: Upload release artifact with ghr
+        uses: fnkr/github-action-ghr@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./access-mtl-map-api-${{ github.ref_name }}.tar.gz
-          asset_name: access-mtl-map-api-${{ github.ref_name }}.tar.gz
-          asset_content_type: application/gzip
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: ./access-mtl-map-api-${{ github.ref_name }}.tar.gz
+          replace: true
