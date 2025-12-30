@@ -5,7 +5,7 @@ permissions:
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "ci/add-docker-image" ]
   pull_request:
     branches: [ "main" ]
   release:
