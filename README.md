@@ -2,6 +2,8 @@
 
 Small API to fetch the list of Access Montreal partners with geo-coordinate data added. Can be used to build a map of places to use an Access Montreal card, e.g. https://www.schlachter.xyz/projects/access-montreal-map
 
+Available as a container at https://hub.docker.com/r/mschlachter/access-mtl-map-api
+
 Contains data scraped from https://montreal.ca/en/articles/acces-montreal-card-exclusive-offers-and-discounts-5990 and https://montreal.ca/articles/carte-acces-montreal-offres-et-rabais-exclusifs-5990
 
 Endpoints
