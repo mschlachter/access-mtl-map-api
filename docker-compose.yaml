@@ -1,0 +1,9 @@
+services:
+  access-mtl-map-api:
+    image: mschlachter/access-mtl-map-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - "ROCKER_ENV=prod"
+      - "ROCKET_ADDRESS=0.0.0.0"
+      - "ROCKET_PORT=8000"
