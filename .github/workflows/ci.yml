@@ -58,6 +58,8 @@ jobs:
           tags: mschlachter/access-mtl-map-api:latest,mschlachter/access-mtl-map-api:${{ github.ref_name }}
           cache-from: type=registry,ref=mschlachter/access-mtl-map-api:latest
           cache-to: type=inline
+          provenance: mode=max
+          sbom: true
 
   release-artifact:
     name: Build release artifact
