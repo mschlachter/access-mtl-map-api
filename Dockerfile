@@ -1,7 +1,7 @@
 FROM rust:alpine AS builder
 
 COPY ./ /build
-RUN cargo build --release --verbose
+RUN cd /build && cargo build --release --verbose
 
 FROM alpine:latest
 
