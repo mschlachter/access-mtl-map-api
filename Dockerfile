@@ -1,0 +1,12 @@
+FROM rust:alpine AS builder
+
+COPY ./ /build
+RUN cargo build --release --verbose
+
+FROM alpine:latest
+
+RUN mkdir /map-api
+COPY --from=builder /build/target/release/access-mtl-map-api /map-api/server
+
+HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:$ROCKET_PORT || exit 1
+ENTRYPOINT ["/map-api/server"]
