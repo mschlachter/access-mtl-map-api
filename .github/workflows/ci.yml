@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: mschlachter/access-mtl-map-api:latest,mschlachter/access-mtl-map-api:${{ github.ref_name }}
+          tags: mschlachter/access-mtl-map-api:${{ github.ref_name }},mschlachter/access-mtl-map-api:latest
           cache-from: type=registry,ref=mschlachter/access-mtl-map-api:latest
           cache-to: type=inline
           provenance: mode=max
