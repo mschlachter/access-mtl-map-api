@@ -1,12 +1,18 @@
 use crate::models::{Language, MapData, RawMapData};
 
 use rocket::serde::json;
+use std::sync::LazyLock;
 
 // This will embed the JSON data in the executable at compile time:
 pub static RAW_DATASET: &str = include_str!("../assets/data.json");
 
-pub fn load_raw_data() -> Vec<RawMapData> {
+// This will cache the data as an object on first access
+pub static RAW_DATA_OBJ: LazyLock<Vec<RawMapData>> = LazyLock::new(|| {
     json::from_str::<Vec<RawMapData>>(RAW_DATASET).expect("Failed to parse embedded JSON data")
+});
+
+pub fn load_raw_data() -> Vec<RawMapData> {
+    (*RAW_DATA_OBJ).to_vec()
 }
 
 pub fn load_for_lang(lang: Language) -> Vec<MapData> {
