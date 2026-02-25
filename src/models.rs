@@ -1,7 +1,7 @@
 use rocket::request::FromParam;
 use rocket::serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RawMapData {
     pub title_en: String,
     pub title_fr: String,
