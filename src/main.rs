@@ -1,11 +1,11 @@
 #[macro_use]
 extern crate rocket;
 
-use access_mtl_map_api::data_tools;
-use access_mtl_map_api::models::{Language, MapData};
+use access_mtl_map_api::models::{Language, MapData, RawMapData};
+use access_mtl_map_api::{data_tools, scrape_data};
 
-use rocket::serde::json::Json;
 use rocket::response::content;
+use rocket::serde::json::Json;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -28,7 +28,15 @@ fn get_data_for_language(lang: Language) -> Json<Vec<MapData>> {
     Json(data_tools::load_for_lang(lang))
 }
 
+#[get("/data/scrape/<lang>")]
+async fn get_scrape_data(lang: Language) -> Json<Vec<RawMapData>> {
+    Json(scrape_data::parse_for_lang(lang).await)
+}
+
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index, get_raw_data, get_data_for_language])
+    rocket::build().mount(
+        "/",
+        routes![index, get_raw_data, get_data_for_language, get_scrape_data],
+    )
 }
