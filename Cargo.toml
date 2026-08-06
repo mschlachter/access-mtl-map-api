@@ -4,5 +4,7 @@ version = "1.0.0"
 edition = "2024"
 
 [dependencies]
+reqwest = "0.13.4"
 rocket = { version = "0.5.1", features = ["json"] }
+scraper = "0.27.0"
 serde = { version = "1.0" }
